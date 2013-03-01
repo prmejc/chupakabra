@@ -1,0 +1,62 @@
+@import "datepicker.less";
+
+fieldset > div, #filter > div{
+    float:left;
+    border-right: 10px solid transparent ;
+
+    label{
+        margin-bottom:0;
+        margin-top:1em;
+    }
+
+    input{
+        margin-top:0;
+    }
+}
+
+#filter{
+    clear:both;
+}
+
+form .first{
+    clear:both;
+}
+
+textarea{
+    width:420px;
+}
+
+fieldset{
+    width:550px;
+}
+
+.overview{
+    width:9em;
+    float:left;
+    margin-left:3em;
+}
+
+.main-form{
+    width:550px;
+    padding-left:3em;
+}
+
+button{
+    .btn;
+}
+
+.select2-container{
+    width:15em;
+}
+
+.table {
+  tbody tr.dobro td {
+    background-color: @successBackground;
+  }
+  tbody tr.pozor td {
+    background-color: @errorBackground;
+  }
+  tbody tr.info td {
+    background-color: @infoBackground;
+  }
+}

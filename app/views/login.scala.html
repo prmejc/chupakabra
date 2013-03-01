@@ -1,0 +1,33 @@
+@(form: Form[UserController.Login], user: User)
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="span4 offset4 well">
+                @helper.form(routes.UserController.authenticate) {
+
+                    <h3>Vpiši se</h3>
+
+                    <p>
+                        <input type="text" name="userName" placeholder="userName" value="@form("userName").value">
+                    </p>
+                    <p>
+                        <input type="password" name="password" placeholder="Password">
+                    </p>
+                    <p>
+                        <button type="submit">Vpiši se</button>
+                    </p>
+
+                    @if(form.hasGlobalErrors) {
+
+                    <div class="alert alert-error">
+                        @form.globalError.message
+                    </div>
+                    }
+                }
+            </div>
+        </div>
+
+    </div>
+
