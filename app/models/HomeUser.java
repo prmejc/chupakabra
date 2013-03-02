@@ -34,7 +34,6 @@ public class HomeUser extends Model{
     }
 
     public static HomeUser authenticate(String userName, String password) {
-        System.out.println(userName +"  " + password);
         return find.where().eq("userName", userName)
                 .eq("password", password).findUnique();
     }

@@ -1,3 +1,5 @@
+import comunication.Comunicator;
+import comunication.Syncer;
 import play.*;
 import play.libs.*;
 import com.avaje.ebean.Ebean;
@@ -15,10 +17,15 @@ public class Global extends GlobalSettings {
 
     @Override
     public void onStart(Application app) {
+
         // Check if the database is empty
         if (HomeUser.find.findRowCount() == 0) {
             Ebean.save((List) Yaml.load("seed.yml"));
         }
+
+
+        Syncer.arduino2Db();
+        Syncer.db2Arduino();
     }
 
 }

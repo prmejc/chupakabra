@@ -1,17 +1,14 @@
 package controllers;
 
+import comunication.Comunicator;
+import models.Command;
+import models.HomeUser;
+import models.Pin;
 import play.mvc.*;
 
 
 import views.html.*;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.Calendar;
-import java.util.Map;
 
 @Security.Authenticated(Secured.class)
 public class Application extends Controller {
@@ -23,30 +20,25 @@ public class Application extends Controller {
         return ok(index.render(""));
     }
 
-    public static Result command(String command, String pin) {
-        String response = sendCommand(command, pin);
+    public static Result command(String command, String sPin) {
+
+        if(!command.equals("status")){
+            Long pinId = Long.parseLong(sPin.split("-")[0].trim());
+            int pinStatus = Integer.parseInt(sPin.split("-")[1].trim());
+
+            Pin pin = Pin.find.byId(pinId);
+            pin.status = pinStatus;
+            pin.save();
+            System.out.println(pin.dateCreate + " " + pin.pinId);
+            Command cmd = new Command(pinId, pinStatus, HomeUser.find.byId(request().username()));
+            cmd.save();
+        }
+
+        String response = Comunicator.checkStatus();
+
         return ok(response);
     }
 
-    private static String sendCommand(String command, String pin) {
-        String response = "";
-        try {
-            URL arduino = new URL(ARDUINO_URL + "/" + command + "/" + pin);
-            System.out.println(arduino);
-            URLConnection yc = arduino.openConnection();
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(
-                            yc.getInputStream()));
-            String inputLine;
 
-            while ((inputLine = in.readLine()) != null)
-                response+=inputLine;
-            in.close();
-        }
-        catch (Exception e){
-            response = e.getMessage();
-        }
-        return response;
-    }
 
 }
