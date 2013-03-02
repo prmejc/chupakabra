@@ -33,9 +33,22 @@ send2arduino = (command) ->
 checkStatus = () ->
     send2arduino("status/0")
 
+
+intervalId = 0
+intervalMs = 1000
+
+
+$("#intervalBtn").click ->
+        clearInterval(intervalId)
+        intervalMs = parseInt($("#intervalInput").val(), 10)
+        alert "Osvežujem na #{intervalMs} ms"
+        intervalId = setInterval ( ->
+              checkStatus()
+            ), intervalMs
+
 $ ->
 
 
     intervalId = setInterval ( ->
       checkStatus()
-    ), 1000
+    ), intervalMs
