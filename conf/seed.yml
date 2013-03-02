@@ -1,6 +1,11 @@
 
 #Users
 - !!models.HomeUser
-    userName:   prmejc
-    password:   secret
-    admin:       Y
+    userName: prmejc
+    password: secret
+    admin: true
+
+- !!models.HomeUser
+    userName: webbby
+    password: secret
+    admin: true
