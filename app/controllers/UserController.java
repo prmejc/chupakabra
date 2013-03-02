@@ -1,6 +1,6 @@
 package controllers;
 
-import models.User;
+import models.HomeUser;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -55,7 +55,7 @@ public class UserController extends Controller {
         public String password;
 
         public String validate() {
-            if (User.authenticate(userName, password) == null) {
+            if (HomeUser.authenticate(userName, password) == null) {
                 return "Napačno uporabniško ime ali geslo";
             }
             return null;

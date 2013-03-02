@@ -1,7 +1,7 @@
-@(form: Form[UserController.Login], user: User)
+@(form: Form[UserController.Login], user: HomeUser)
 
 
-
+@main("Home automation") {
     <div class="container">
         <div class="row">
             <div class="span4 offset4 well">
@@ -10,7 +10,7 @@
                     <h3>Vpiši se</h3>
 
                     <p>
-                        <input type="text" name="userName" placeholder="userName" value="@form("userName").value">
+                        <input type="text" name="userName" placeholder="User name" value="@form("userName").value">
                     </p>
                     <p>
                         <input type="password" name="password" placeholder="Password">
@@ -30,4 +30,5 @@
         </div>
 
     </div>
+}
 

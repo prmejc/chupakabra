@@ -1,0 +1,6 @@
+
+#Users
+- !!models.HomeUser
+    userName:   prmejc
+    password:   secret
+    admin:       Y
