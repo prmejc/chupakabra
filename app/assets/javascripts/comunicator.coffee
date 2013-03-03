@@ -13,7 +13,12 @@ send2arduino = (command) ->
 		type: 'GET'
 		dataType: 'html'
 		error: (jqXHR, textStatus, errorThrown) ->
-			$('body').append "AJAX Error: #{jqXHR}"
+            console.log(textStatus)
+            console.log(errorThrown)
+            if jqXHR == null || jqXHR == ""
+                console.log("nada")
+            $('#out_panel').html("<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>&times;</button><h4>Napaka!</h4>Nadzorna plošča je nedosegljiva.</div>")
+            $('#in_panel').html("")
 		success: (data, textStatus, jqXHR) ->
             if data.indexOf("out") < 0
                 alert data

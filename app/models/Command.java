@@ -26,6 +26,9 @@ public class Command extends Model {
     public Date dateCreate;
     public Date dateModify;
 
+    public static Model.Finder<Long, Command> find = new Model.Finder<Long, Command>(Long.class, Command.class);
+
+
     public Command(Long pinId, int pinStatus, HomeUser commander) {
         this.pinId = pinId;
         this.pinStatus = pinStatus;

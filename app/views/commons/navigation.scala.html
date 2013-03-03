@@ -1,0 +1,16 @@
+@(homeUser: HomeUser)
+
+
+    @if(homeUser != null) {
+
+    <ul class="nav">
+        <li class="divider-vertical"></li>
+        <li><a href="@routes.Application.index()">Nadzor</a></li>
+        <li><a href="@routes.Application.log()">Dnevnik</a></li>
+    </ul>
+    <ul class="nav pull-right">
+
+        <li ><a href="@routes.UserController.logout()">Odjavi se</a></li>
+    </ul>
+    }
+

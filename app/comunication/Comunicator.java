@@ -1,12 +1,9 @@
 package comunication;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Calendar;
-import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.

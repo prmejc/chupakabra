@@ -1,4 +1,4 @@
-@(title: String)(content: Html)
+@(title: String, homeUser: HomeUser)(content: Html)
 
 <!DOCTYPE html>
 
@@ -20,12 +20,14 @@
 
                 <!-- Be sure to leave the brand out there if you want it shown -->
                 <a class="brand" href="#">Home automation</a>
+                @views.html.commons.navigation(homeUser)
 
 
 
             </div>
         </div>
     </div>
+
         @content
     </body>
 </html>

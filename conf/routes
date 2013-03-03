@@ -4,11 +4,12 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-GET     /command/:command/:pin           controllers.Application.command(command:String, pin:String)
 
-# Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+#Log
+GET     /log                        controllers.Application.log()
 
+#Commands
+GET     /command/:command/:pin      controllers.Application.command(command:String, pin:String)
 
 # Login
 GET     /login                      controllers.UserController.login()

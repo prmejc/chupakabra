@@ -1,6 +1,6 @@
-@(message: String)
+@(homeUser: HomeUser)
 
-@main("Welcome to Play 2.1") {
+@main("Home automation", homeUser) {
 
 <div class="container">
     <div class="row">
@@ -16,7 +16,7 @@
         <div class="input-append" id="date_div">
             <label>Interval:</label>
             <input type="text" class="input-small" id="intervalInput" name="intervalInput" value="1000"  >
-            <span class="add-on" id="">Ms</span>
+            <span class="add-on" id="">ms</span>
         </div>
         <input type="button" class="btn" id="intervalBtn" value="Shrani">
     </div>

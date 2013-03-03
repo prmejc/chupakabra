@@ -16,8 +16,19 @@ public class Application extends Controller {
     private static String ARDUINO_URL = "http://arduino.gorsha.si:7670";
 
     public static Result index() {
+        String userName =  request().username();
 
-        return ok(index.render(""));
+        return ok(index.render(HomeUser.find.where().eq("userName", userName).findUnique()));
+    }
+
+    public static Result log() {
+
+        String userName =  request().username();
+
+        return ok(log.render(
+                                Command.find.where().orderBy("dateCreate desc").findList(),
+                                HomeUser.find.where().eq("userName", userName).findUnique()
+        ));
     }
 
     public static Result command(String command, String sPin) {
