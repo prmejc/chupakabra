@@ -1,6 +1,7 @@
 package comunication;
 
 import models.Pin;
+import play.Logger;
 
 import java.util.List;
 
@@ -17,21 +18,25 @@ public class Syncer {
     public static void arduino2Db(){
         String arduinoResponse = Comunicator.sendCommand("status", "0");
 
-        String outPuts = arduinoResponse.split("out")[1];
-        outPuts = outPuts.split("\\{")[1];
-        outPuts = outPuts.split("\\}")[0];
+        if(arduinoResponse.indexOf("out")>0){
+            String outPuts = arduinoResponse.split("out")[1];
+            outPuts = outPuts.split("\\{")[1];
+            outPuts = outPuts.split("\\}")[0];
 
-        //"5":1,"6":0,"7":0
-        for (String sPin : outPuts.split(",")){
-            sPin = sPin.trim().replaceAll("\"", "").replaceAll(" ", "");
-            int colonIndex = sPin.indexOf(":");
-            Long pinId = Long.parseLong(sPin.substring(0,colonIndex));
-            int pinStatus = Integer.parseInt(sPin.substring(colonIndex+1));
-            if(Pin.find.byId(pinId) == null){
-                Pin pin = new Pin(pinId, "OUT", pinStatus);
-                pin.save();
+            //"5":1,"6":0,"7":0
+            for (String sPin : outPuts.split(",")){
+                sPin = sPin.trim().replaceAll("\"", "").replaceAll(" ", "");
+                int colonIndex = sPin.indexOf(":");
+                Long pinId = Long.parseLong(sPin.substring(0,colonIndex));
+                int pinStatus = Integer.parseInt(sPin.substring(colonIndex+1));
+                if(Pin.find.byId(pinId) == null){
+                    Pin pin = new Pin(pinId, "OUT", pinStatus);
+                    pin.save();
+                }
+
             }
-
+        } else{
+            Logger.error("Wrong response from arduino on arduino2Db");
         }
     }
 

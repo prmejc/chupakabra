@@ -1,10 +1,12 @@
-import comunication.Comunicator;
-import comunication.Syncer;
-import play.*;
-import play.libs.*;
 import com.avaje.ebean.Ebean;
-import models.*;
-import java.util.*;
+import comunication.Syncer;
+import models.HomeUser;
+import play.Application;
+import play.GlobalSettings;
+import play.libs.Yaml;
+import time.TaskLoader;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,6 +28,8 @@ public class Global extends GlobalSettings {
 
         Syncer.arduino2Db();
         Syncer.db2Arduino();
+
+        TaskLoader.loadTasksFromDB();
     }
 
 }

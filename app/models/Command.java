@@ -39,7 +39,6 @@ public class Command extends Model {
 
     @Override
     public void save() {
-        dateCreate = new Date();
         dateModify = new Date();
         super.save();
     }

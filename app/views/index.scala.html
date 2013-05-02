@@ -3,23 +3,28 @@
 @main("Home automation", homeUser) {
 
 <div class="container">
-    <div class="row">
-        <div id="out_panel" class="span8 offset2">
-        </div>
-    </div>
-    <div class="row">
-        <div id="in_panel" class="span8 offset2">
-        </div>
-    </div>
-    <br>
-    <div class="row">
+    <div id="timeDiv" class="row">
         <div class="input-append" id="date_div">
-            <label>Interval:</label>
-            <input type="text" class="input-small" id="intervalInput" name="intervalInput" value="1000"  >
-            <span class="add-on" id="">ms</span>
+            <label>Datum:</label>
+            <input type="text" class="input-small" id="taskDate" name="taskDate" value="@Calendar.getInstance().getTime().format("dd/MM/yyyy")"  >
+            <span class="add-on" id="day_taskDate">@Calendar.getInstance().getTime().format("EEE")</span>
         </div>
-        <input type="button" class="btn" id="intervalBtn" value="Shrani">
+        <div class="input-append">
+            <label>Ura:</label>
+            <input type="text" class="input-small" id="taskTime" name="taskTime"  placeholder="17:00">
+        </div>
+        <div>
+            <label>Naprava:</label>
+            <select id="select_device" name="device">
+                <option value="1">Cupakabra</option>
+                <option value="2">Cupsadakabra</option>
+
+            </select>
+        </div>
     </div>
+
 </div>
 }
-<script src="@routes.Assets.at("javascripts/comunicator.js")" type="text/javascript"></script>
+<script src="@routes.Assets.at("javascripts/bootstrap-datepicker.js")" type="text/javascript"></script>
+<script src="@routes.Assets.at("javascripts/select2.js")" type="text/javascript"></script>
+<script src="@routes.Assets.at("javascripts/userInterface.js")" type="text/javascript"></script>

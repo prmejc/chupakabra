@@ -21,6 +21,12 @@ public class Application extends Controller {
         return ok(index.render(HomeUser.find.where().eq("userName", userName).findUnique()));
     }
 
+    public static Result admin() {
+        String userName =  request().username();
+
+        return ok(admin.render(HomeUser.find.where().eq("userName", userName).findUnique()));
+    }
+
     public static Result log() {
 
         String userName =  request().username();

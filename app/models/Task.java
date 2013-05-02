@@ -4,37 +4,39 @@ import play.db.ebean.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
  * User: prmejc
- * Date: 2.3.2013
- * Time: 15:11
+ * Date: 3.3.2013
+ * Time: 13:37
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-public class Pin extends Model {
+public class Task extends Model {
 
     @Id
-    public Long pinId;
-    public String type;
+    public Long taskId;
+    @ManyToOne
+    public HomeUser commander;
+    @ManyToOne
+    public Pin pin;
     public int status;
+    public Date executeTime;
     public Date dateCreate;
     public Date dateModify;
-    @Version
-    public int version;
 
-    public static Model.Finder<Long, Pin> find = new Finder<Long, Pin>(Long.class, Pin.class);
+    public static Model.Finder<Long, Task> find = new Finder<Long, Task>(Long.class, Task.class);
 
-
-    public Pin(Long pinId, String type, int status) {
-        this.pinId = pinId;
-        this.type = type;
+    public Task(HomeUser commander, Pin pin, int status, Date executeTime) {
+        this.commander = commander;
+        this.pin = pin;
         this.status = status;
-        this.dateCreate = new Date();
-        this.dateModify = new Date();
+        this.executeTime = executeTime;
+        dateCreate = new Date();
+        dateModify = new Date();
     }
 
     @Override
