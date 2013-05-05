@@ -1,5 +1,6 @@
 package models;
 
+import org.jasypt.util.password.BasicPasswordEncryptor;
 import play.db.ebean.Model;
 
 import javax.persistence.Entity;
@@ -26,16 +27,22 @@ public class HomeUser extends Model{
 
 
     public HomeUser(String userName, String password, boolean admin) {
+        BasicPasswordEncryptor bpe = new BasicPasswordEncryptor();
         this.userName = userName;
-        this.password = password;
+        this.password = bpe.encryptPassword(password);
         this.admin = admin;
         this.dateCreate = new Date();
         this.dateModify = new Date();
     }
 
     public static HomeUser authenticate(String userName, String password) {
-        return find.where().eq("userName", userName)
-                .eq("password", password).findUnique();
+        BasicPasswordEncryptor bpe = new BasicPasswordEncryptor();
+        HomeUser hu = find.where().eq("userName", userName).findUnique();
+        if(hu != null)
+            if (bpe.checkPassword(password, hu.password))
+                return hu;
+
+        return null;
     }
 
     @Override

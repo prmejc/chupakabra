@@ -21,7 +21,8 @@ send2arduino = (command) ->
             $('#in_panel').html("")
 		success: (data, textStatus, jqXHR) ->
             if data.indexOf("out") < 0
-                alert data
+                $('#out_panel').html("<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>&times;</button><h4>Napaka!</h4>Arduino ni dosegljiv.</div>")
+                console.log("NAPAKA: " + textStatus + " " + jqXHR + " " + data)
             else
                 data = JSON.parse data
                 $('#out_panel').html("")

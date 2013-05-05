@@ -1,11 +1,10 @@
 package time;
 
-import akka.actor.ActorRef;
-import akka.actor.Props;
+import models.Task;
 import play.libs.Akka;
-import scala.concurrent.ExecutionContext;
 import scala.concurrent.duration.Duration;
 
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 
@@ -19,16 +18,27 @@ import java.util.concurrent.TimeUnit;
 public class TaskLoader {
 
     public static void loadTasksFromDB(){
-        System.out.println("counting.........");
+        System.out.println("Loading tasks from DB:");
 
-        Akka.system().scheduler().scheduleOnce(
-                Duration.create(10, TimeUnit.SECONDS),
-                new Runnable() {
-                    public void run() {
-                        System.out.println("...................done");
-                    }
-                }, Akka.system().dispatcher()
-        );
+        Date d = new Date();
+        long current =  d.getTime();
+        for(final Task task :Task.find.all()){
+            final long seconds = (task.executeTime.getTime() - current)/1000;
+            if(seconds < 0) {
+                task.delete();
 
+            }else{
+                System.out.println("prižigam čez " + seconds + " sekund");
+
+                Akka.system().scheduler().scheduleOnce(
+                        Duration.create(seconds, TimeUnit.SECONDS),
+                        new Runnable() {
+                            public void run() {
+                                System.out.println("Sem prižgal " + task.taskId );
+                            }
+                        }, Akka.system().dispatcher()
+                );
+            }
+        }
     }
 }

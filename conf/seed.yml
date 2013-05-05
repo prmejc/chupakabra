@@ -1,11 +1,27 @@
 
 #Users
-- !!models.HomeUser
-    userName: prmejc
-    password: secret
-    admin: true
+#- !!models.HomeUser
+#    userName: webbby
+#    password: secret #geslo potrebno nadomestiti z hash
+#    admin: true
 
-- !!models.HomeUser
-    userName: webbby
-    password: secret
-    admin: true
+#Pin
+- !!models.Pin
+    pinId: 1
+    type: out
+    status: 1
+    dateCreate: 2013-05-02t14:45:43.10-02:00
+    dateModify: 2013-05-02t14:45:43.10-02:00
+
+
+#Tasks
+- !!models.Task
+    taskId: 1
+    commander: !!models.HomeUser
+                 userName: prmejc
+    pin:       !!models.Pin
+                pinId: 1
+    status: 1
+    executeTime: 2013-05-02t13:01:43.10+02:00
+    dateCreate: 2013-05-02t14:45:43.10
+    dateModify: 2013-05-02t14:45:43.10

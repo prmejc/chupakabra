@@ -1,5 +1,5 @@
 $ ->
-    $('#taskDate').datepicker({format: 'dd/mm/yyyy'})
+    $('#taskDate').datepicker({format: 'dd.mm.yyyy'})
 
     $('#taskDate').bind 'changeDate', (event) =>
             days = ["Ned", "Pon", "Tor", "Sre", "Čet", "Pet", "Sob", "Ned"]

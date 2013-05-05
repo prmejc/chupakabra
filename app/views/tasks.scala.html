@@ -1,0 +1,29 @@
+@(homeUser: HomeUser, tasks: List[Task])
+
+@main("Home automation", homeUser) {
+
+<div class="container">
+    <table class="table table-striped table-condensed table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>Pin</th>
+            <th>Status</th>
+            <th>Uporabnik</th>
+            <th>Čas</th>
+        </tr>
+        </thead>
+        <tbody>
+        @for(task <- tasks) {
+        <tr>
+            <td>@task.pin</td>
+            <td>@task.status</td>
+            <td>@task.commander.userName</td>
+            <td>@task.executeTime.format("dd MMM yyyy kk:mm")</td>
+
+
+        </tr>
+        }
+        </tbody>
+    </table>
+</div>
+}

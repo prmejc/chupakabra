@@ -3,6 +3,7 @@ import comunication.Syncer;
 import models.HomeUser;
 import play.Application;
 import play.GlobalSettings;
+import play.Logger;
 import play.libs.Yaml;
 import time.TaskLoader;
 
@@ -22,6 +23,9 @@ public class Global extends GlobalSettings {
 
         // Check if the database is empty
         if (HomeUser.find.findRowCount() == 0) {
+            HomeUser hu = new HomeUser("prmejc", "secret", true);
+            hu.save();
+            Logger.info("geslo: " + hu.password);
             Ebean.save((List) Yaml.load("seed.yml"));
         }
 

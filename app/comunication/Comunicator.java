@@ -14,7 +14,7 @@ import java.net.URLConnection;
  */
 public class Comunicator {
 
-    private static String ARDUINO_URL = "http://arduino.gorsha.si:7670";
+    private static String ARDUINO_URL = "http://84.41.60.185:7670";
 
     public static String checkStatus(){
         Syncer.db2Arduino();
@@ -36,7 +36,7 @@ public class Comunicator {
             in.close();
         }
         catch (Exception e){
-            response = e.getMessage();
+            response = "Povezava z " + ARDUINO_URL + " neuspešna!";
         }
         return response;
     }

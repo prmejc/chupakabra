@@ -4,7 +4,9 @@ import models.HomeUser;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
 import views.html.login;
+import views.html.users;
 
 import static play.data.Form.form;
 
@@ -16,6 +18,12 @@ import static play.data.Form.form;
  * To change this template use File | Settings | File Templates.
  */
 public class UserController extends Controller {
+
+    @Security.Authenticated(Secured.class)
+    public static Result userList() {
+        return ok(users.render(HomeUser.find.where().eq("userName", request().username()).findUnique(), HomeUser.find.all()));
+
+    }
 
     public static Result login() {
         return ok(

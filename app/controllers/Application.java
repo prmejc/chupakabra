@@ -4,16 +4,16 @@ import comunication.Comunicator;
 import models.Command;
 import models.HomeUser;
 import models.Pin;
-import play.mvc.*;
-
-
-import views.html.*;
+import play.mvc.Controller;
+import play.mvc.Result;
+import play.mvc.Security;
+import views.html.admin;
+import views.html.index;
+import views.html.log;
 
 
 @Security.Authenticated(Secured.class)
 public class Application extends Controller {
-
-    private static String ARDUINO_URL = "http://arduino.gorsha.si:7670";
 
     public static Result index() {
         String userName =  request().username();
@@ -52,7 +52,6 @@ public class Application extends Controller {
         }
 
         String response = Comunicator.checkStatus();
-
         return ok(response);
     }
 
