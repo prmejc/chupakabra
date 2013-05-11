@@ -1,6 +1,5 @@
 initListeners = () ->
     $(".switch").click ->
-        id_val = $(this).attr('value')
         data = $(this).attr('data')
         send2arduino(data)
 
@@ -15,7 +14,6 @@ send2arduino = (command) ->
                 console.log("nada")
 		success: (data, textStatus, jqXHR) ->
             if data.indexOf("out") < 0
-                $('#out_panel').html("<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>&times;</button><h4>Napaka!</h4>Arduino ni dosegljiv.</div>")
                 console.log("NAPAKA: " + textStatus + " " + jqXHR + " " + data)
             else
                 data = JSON.parse data
