@@ -14,7 +14,7 @@ import java.net.URLConnection;
  */
 public class Comunicator {
 
-    private static String ARDUINO_URL = "http://84.41.60.185:7670";
+    private static String ARDUINO_URL = "http://84.255.226.118:7670";
 
     public static String checkStatus(){
         Syncer.db2Arduino();
