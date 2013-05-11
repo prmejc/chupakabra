@@ -4,6 +4,7 @@ import comunication.Comunicator;
 import models.Command;
 import models.HomeUser;
 import models.Pin;
+import play.Routes;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
@@ -17,7 +18,6 @@ public class Application extends Controller {
 
     public static Result index() {
         String userName =  request().username();
-
         return ok(index.render(HomeUser.find.where().eq("userName", userName).findUnique()));
     }
 
@@ -53,6 +53,13 @@ public class Application extends Controller {
 
         String response = Comunicator.checkStatus();
         return ok(response);
+    }
+
+    public static Result javascriptRoutes() {
+        response().setContentType("text/javascript");
+        return ok(Routes.javascriptRouter("jsRoutes",
+                routes.javascript.UserController.deleteUser()
+        ));
     }
 
 

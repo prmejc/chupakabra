@@ -25,6 +25,18 @@ public class UserController extends Controller {
 
     }
 
+    public static Result addUser(){
+        HomeUser hu = Form.form(HomeUser.class).bindFromRequest().get();
+        hu.save();
+        return ok("shranjen");
+    }
+
+    public static Result deleteUser(String userName){
+        HomeUser hu = HomeUser.find.byId(userName);
+        hu.delete();
+        return ok("izbrisan");
+    }
+
     public static Result login() {
         return ok(
                 login.render(form(Login.class), null)

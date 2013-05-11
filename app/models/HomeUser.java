@@ -35,10 +35,20 @@ public class HomeUser extends Model{
         this.dateModify = new Date();
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        BasicPasswordEncryptor bpe = new BasicPasswordEncryptor();
+        this.password = bpe.encryptPassword(password);
+    }
+
     public static HomeUser authenticate(String userName, String password) {
         BasicPasswordEncryptor bpe = new BasicPasswordEncryptor();
         HomeUser hu = find.where().eq("userName", userName).findUnique();
         if(hu != null)
+            if(hu.password != null)
             if (bpe.checkPassword(password, hu.password))
                 return hu;
 

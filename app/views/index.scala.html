@@ -3,30 +3,9 @@
 @main("Home automation", homeUser) {
 
 <div class="container">
-    <div id="timeDiv" class="row">
-        <div class="input-append" id="date_div">
-            <label>Datum:</label>
-            <input type="text" class="input-small" id="taskDate" name="taskDate" value="@Calendar.getInstance().getTime().format("dd.MM.yyyy")"  >
-            <span class="add-on" id="day_taskDate">@Calendar.getInstance().getTime().format("EEE")</span>
-        </div>
-        <div class="input-append">
-            <label>Ura:</label>
-            <input type="text" class="input-small" id="taskTime" name="taskTime"  placeholder="17:00">
-        </div>
-        <div>
-            <label>Naprava:</label>
-            <select id="select_device" name="device">
-                <option value="1">Cupakabra</option>
-                <option value="2">Cupsadakabra</option>
-
-            </select>
-        </div>
-
-    </div>
-
-    <div class="switch" data-on="danger" data-off="info">  <!-- primary, info, success, warning and danger -->
-        <input type="checkbox">
-    </div>
+    <input type="button" class="btn btn-info btn-large switch" value="Nadstropje 1">
+    <input type="button" class="btn btn-info btn-large switch" value="Nadstropje 2">
+    <input type="button" class="btn btn-info btn-large switch" value="Nadstropje 3">
 </div>
 
 }

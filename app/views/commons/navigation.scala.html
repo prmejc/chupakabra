@@ -2,18 +2,21 @@
 
 
     @if(homeUser != null) {
+<div class="nav-collapse collapse">
 
     <ul class="nav">
-        <li class="divider-vertical"></li>
         <li><a href="@routes.Application.index()">Nadzor</a></li>
-        <li><a href="@routes.Application.log()">Dnevnik</a></li>
-        <li><a href="@routes.Application.admin()">Admin</a></li>
-        <li><a href="@routes.TaskController.tasks()">Urnik</a></li>
-        <li><a href="@routes.UserController.userList()">Uporabniki</a></li>
+        @if(homeUser.admin == true){
+            <li><a href="@routes.Application.log()">Dnevnik</a></li>
+            <li><a href="@routes.Application.admin()">Admin</a></li>
+            <li><a href="@routes.TaskController.tasks()">Urnik</a></li>
+            <li><a href="@routes.UserController.userList()">Uporabniki</a></li>
+        }
     </ul>
     <ul class="nav pull-right">
 
         <li ><a href="@routes.UserController.logout()">Odjavi se</a></li>
     </ul>
+</div>
     }
 

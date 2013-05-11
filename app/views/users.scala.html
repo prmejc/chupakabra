@@ -10,7 +10,7 @@
                 <thead>
                 <tr>
                     <th>Uporabnik</th>
-                    <th></th>
+                    <th>Admin</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -19,10 +19,14 @@
                 <tr>
                     <td>@user.userName</td>
                     <td>
-                        <input type="button" class="btn btn-info" value="Uredi" />
+                        @if(user.admin){
+                            Da
+                        }
                     </td>
                     <td>
-                        <input type="button" class="btn btn-warning" value="Izbriši" />
+                        @if(user.userName != homeUser.userName){
+                        <input data="@user.userName" type="button" class="btn btn-warning deleteUser" value="Izbriši" />
+                        }
                     </td>
                 </tr>
                 }
@@ -31,8 +35,8 @@
                         <input type="button" class="btn btn-success addUser" value="Dodaj"/>
                     </td>
                     <td>
+                    </td> <td>
                     </td>
-                    <td></td>
                 </tr>
                 </tbody>
             </table>
@@ -48,9 +52,15 @@
     </div>
     <div class="modal-body">
         <div >
-            <label>Ime:</label>
-            <input type="text" name="userName" id="userName" placeholder="Uporabniško ime"/>
-
+            <form id="userForm" action="@routes.UserController.addUser()" method="POST">
+                <label>Ime:</label>
+                <input type="text" name="userName" id="userName" placeholder="Uporabniško ime"/>
+                <label>Geslo:</label>
+                <input type="password" name="password" id="password" placeholder="Uporabniško geslo"/>
+                <label class="checkbox">
+                    <input type="checkbox" name="admin" id="admin"> Administrator
+                </label>
+            </form>
         </div>
     </div>
     <div class="modal-footer">
