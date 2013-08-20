@@ -12,6 +12,7 @@ send2arduino = (command) ->
 	$.ajax "/command/#{command}",
 		type: 'GET'
 		dataType: 'html'
+		cache: false
 		error: (jqXHR, textStatus, errorThrown) ->
             console.log(textStatus)
             console.log(errorThrown)
