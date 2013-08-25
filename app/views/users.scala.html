@@ -10,6 +10,7 @@
                 <thead>
                 <tr>
                     <th>Uporabnik</th>
+                    <th>email</th>
                     <th>Admin</th>
                     <th></th>
                 </tr>
@@ -18,6 +19,7 @@
                 @for(user <- users) {
                 <tr>
                     <td>@user.userName</td>
+                    <td>@user.email</td>
                     <td>
                         @if(user.admin){
                             Da
@@ -25,8 +27,11 @@
                     </td>
                     <td>
                         @if(user.userName != homeUser.userName){
-                        <input data="@user.userName" type="button" class="btn btn-warning deleteUser" value="Izbriši" />
+                            <input data="@user.userName" type="button" class="btn btn-warning deleteUser" value="Izbriši" />
                         }
+
+                        <input data="@user.userName" type="button" class="btn btn-warning changePass" value="Uredi" />
+
                     </td>
                 </tr>
                 }
@@ -65,6 +70,28 @@
     </div>
     <div class="modal-footer">
         <button id="addUserBtn" class="btn btn-success" data-dismiss="modal" aria-hidden="true">Potrdi</button>
+        <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Prekliči</button>
+    </div>
+</div>
+
+<div class="modal hide" id="changePasswordDialog">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal">×</button>
+        <h3>Spremeni geslo</h3>
+    </div>
+    <div class="modal-body">
+        <div >
+            <form id="passForm" action="@routes.UserController.changePassword()" method="POST">
+                <input type="hidden" name="userToChange" id="userToChange"/>
+                <label>Geslo:</label>
+                <input type="password" name="newPassword" id="newPassword" placeholder="Uporabniško geslo"/>
+                <label>Email:</label>
+                <input type="email" name="email" id="email" placeholder="email naslov"/>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button id="changePassBtn" class="btn btn-success" data-dismiss="modal" aria-hidden="true">Potrdi</button>
         <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Prekliči</button>
     </div>
 </div>

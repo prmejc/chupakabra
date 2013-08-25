@@ -15,6 +15,7 @@ POST    /saveTask                   controllers.TaskController.saveTask()
 #users
 GET     /users                      controllers.UserController.userList()
 POST    /addUser                    controllers.UserController.addUser()
+POST    /changePassword                    controllers.UserController.changePassword()
 GET     /deleteUser                 controllers.UserController.deleteUser(userName:String)
 
 #Commands

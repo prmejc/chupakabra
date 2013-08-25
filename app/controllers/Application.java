@@ -58,7 +58,8 @@ public class Application extends Controller {
     public static Result javascriptRoutes() {
         response().setContentType("text/javascript");
         return ok(Routes.javascriptRouter("jsRoutes",
-                routes.javascript.UserController.deleteUser()
+                routes.javascript.UserController.deleteUser(),
+                routes.javascript.UserController.changePassword()
         ));
     }
 

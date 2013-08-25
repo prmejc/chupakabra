@@ -16,6 +16,7 @@ create table command (
 create table home_user (
   user_name                 varchar(255) not null,
   password                  varchar(255),
+  email                     varchar(255),
   admin                     boolean,
   date_create               timestamp,
   date_modify               timestamp,

@@ -19,6 +19,7 @@ public class HomeUser extends Model{
     @Id
     public String userName;
     public String password;
+    public String email;
     public boolean admin;
     public Date dateCreate;
     public Date dateModify;
@@ -42,6 +43,14 @@ public class HomeUser extends Model{
     public void setPassword(String password) {
         BasicPasswordEncryptor bpe = new BasicPasswordEncryptor();
         this.password = bpe.encryptPassword(password);
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public static HomeUser authenticate(String userName, String password) {

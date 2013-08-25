@@ -31,6 +31,21 @@ public class UserController extends Controller {
         return ok("shranjen");
     }
 
+    public static Result changePassword(){
+        Form<ChangePassword> loginForm = form(ChangePassword.class).bindFromRequest();
+
+        HomeUser user = HomeUser.find.byId(loginForm.get().userToChange);
+        if(user != null){
+            if(loginForm.get().newPassword != null || !"".equals(loginForm.get().newPassword))
+                user.setPassword(loginForm.get().newPassword);
+
+            if(loginForm.get().email != null || !"".equals(loginForm.get().email))
+                user.setEmail(loginForm.get().email);
+            user.save();
+        }
+        return ok("geslo spremenjeno");
+    }
+
     public static Result deleteUser(String userName){
         HomeUser hu = HomeUser.find.byId(userName);
         hu.delete();
@@ -78,6 +93,18 @@ public class UserController extends Controller {
             if (HomeUser.authenticate(userName, password) == null) {
                 return "Napačno uporabniško ime ali geslo";
             }
+            return null;
+        }
+
+    }
+
+    public static class ChangePassword {
+
+        public String userToChange;
+        public String newPassword;
+        public String email;
+
+        public String validate() {
             return null;
         }
 
