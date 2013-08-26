@@ -1,3 +1,5 @@
+$ ?= require 'jquery' # For Node.js compatibility
+
 initListeners = () ->
     $(".switch").click ->
         data = $(this).attr('data')
@@ -6,8 +8,8 @@ initListeners = () ->
 send2arduino = (command) ->
 	$.ajax "/command/#{command}",
 		type: 'GET'
-		cache: false
 		dataType: 'html'
+		cache: false
 		error: (jqXHR, textStatus, errorThrown) ->
             console.log(textStatus)
             console.log(errorThrown)
@@ -46,6 +48,7 @@ checkStatus = () ->
 intervalId = 0
 intervalMs = 1000
 $ ->
+    initListeners()
     intervalId = setInterval ( ->
       checkStatus()
     ), intervalMs
